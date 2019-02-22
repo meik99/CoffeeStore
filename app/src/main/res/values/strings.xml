@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">CoffeeStore</string>
+    <string name="price_placeholder">0.00€</string>
+    <string name="settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="dialog_buy_product">
+        Buy %1$s for %2$s?
+    </string>
+    <string name="dialog_tilte_buy_product">
+        Buy %1$s?
+    </string>
+    <string name="dialog_confirm">
+        Confirm
+    </string>
+    <string name="dialog_cancel">
+        Cancel
+    </string>
+    <string name="manage_customers">Manage Customers</string>
+    <string name="manage_products">Manage Products</string>
+    <string name="name">Name</string>
+    <string name="balance">Balance</string>
+    <string name="no_customers_found">No Customers Found</string>
+    <string name="dialog_delete_customer">Delete customer %1$s with %2$s as balance?</string>
+    <string name="dialog_delete_title">Delete %1$s</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="clear_balance">Clear Balance</string>
+    <string name="price">Price</string>
+    <string name="stock">Stock</string>
+    <string name="in_stock">Stock: %1$d</string>
+    <string name="no_products_found">No Products Found</string>
+    <string name="dialog_delete_product">Delete product %1$s with price %2$s and %3$s in stock?</string>
+    <string name="customer">Customer</string>
+    <string name="product">Product</string>
+    <string name="transaction">Transaction</string>
+    <string name="status">Status</string>
+    <string name="customer_not_found">Customer Not Found</string>
+    <string name="product_not_found">Product Not Found</string>
+    <string name="manage_transactions">Manage Transactions</string>
+    <string name="toast_balance_cleared">Balance Cleared</string>
+    <string name="toast_error_transaction">Error while changing transaction status</string>
+    <string name="export">Export</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="please_check_dates">Error while exporting. Please check dates.</string>
+    <string name="channel_write_file">Writing File</string>
+    <string name="channel_write_file_description">Used to notifiy about file export progress</string>
+    <string name="sucessfully_exported_data">Successfully exported data</string>
+    <string name="revoke">Revoke</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="opened">Open</string>
+    <string name="closeed">Closed</string>
+    <string name="revoked">Revoked</string>
+    <string name="date">Date</string>
+    <string name="password">Password</string>
+    <string name="preference_password_key">password</string>
+    <string name="dialog_enter_password">Enter Password</string>
+    <string name="password_saved">Password saved</string>
+    <string name="backup">Backup</string>
+    <string name="read_backup">Read Backup</string>
+    <string name="select_backup_path">Select Backup Path</string>
+    <string name="read_backup">Read Backup</string>
+    <string name="write_backup">Write Backup</string>
+    <string name="placeholder_backup_path">data/backup.csv</string>
+    <string name="write_backup">Write Backup</string>
+</resources>

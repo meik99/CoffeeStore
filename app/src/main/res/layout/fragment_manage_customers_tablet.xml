@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".management.customer.tablet.ManageCustomersFragment"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/listCustomers"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline3"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.57"/>
+
+    <TextView
+            android:text="@string/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTransactionCustomerName"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/editCustomerName"/>
+
+    <EditText
+            android:hint="@string/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editCustomerName"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtTransactionCustomerName"
+            android:layout_marginStart="8dp"/>
+
+    <TextView
+            android:text="@string/balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCustomerBalance"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/editCustomerBalance"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <EditText
+            android:hint="@string/balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editCustomerBalance"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editCustomerName"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtCustomerBalance"
+            android:layout_marginStart="8dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_add_white_24dp"
+            android:id="@+id/fabAddCustomer"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:fabSize="normal"
+            app:useCompatPadding="true"
+            android:focusable="true"/>
+
+    <TextView
+            android:text="@string/no_customers_found"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNoCustomersFound"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <Button
+            android:text="@string/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editCustomerBalance"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            android:layout_marginEnd="8dp"/>
+
+    <Button
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDelete"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editCustomerBalance"
+            android:layout_marginEnd="8dp"/>
+
+    <Button
+            android:text="@string/clear_balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnClearBalance"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnSave"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

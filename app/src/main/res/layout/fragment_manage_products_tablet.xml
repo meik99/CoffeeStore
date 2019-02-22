@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".management.product.tablet.ManageProductsFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline4"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listProducts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            android:layout_marginEnd="8dp"
+            />
+
+    <TextView
+            android:text="@string/no_products_found"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNoProductsFound"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline5"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.57"/>
+
+    <EditText
+            android:hint="@string/name"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editProductName"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"/>
+
+    <EditText
+            android:hint="@string/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editProductPrice"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editProductName"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+            android:hint="@string/stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/editProductStock"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editProductPrice"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            android:text="@string/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintTop_toTopOf="@+id/editProductName"
+            app:layout_constraintBottom_toBottomOf="@+id/editProductName"
+            app:layout_constraintEnd_toStartOf="@+id/editProductName"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            android:layout_marginStart="8dp"/>
+
+    <TextView
+            android:text="@string/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/editProductPrice"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/editProductPrice"
+            app:layout_constraintBottom_toBottomOf="@+id/editProductPrice"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+            android:text="@string/stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            app:layout_constraintTop_toTopOf="@+id/editProductStock"
+            app:layout_constraintBottom_toBottomOf="@+id/editProductStock"
+            app:layout_constraintEnd_toStartOf="@+id/editProductStock"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <Button
+            android:text="@string/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editProductStock"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            android:layout_marginEnd="8dp"/>
+
+    <Button
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDelete"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/editProductStock"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@drawable/ic_add_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:id="@+id/fabAddProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:fabSize="normal"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
