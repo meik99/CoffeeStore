@@ -45,4 +45,11 @@
     <string name="closeed">Geschlossen</string>
     <string name="revoked">Storniert</string>
     <string name="date">Datum</string>
+    <string name="read_backup">Backup einlesen</string>
+    <string name="select_backup_path">Backup Pfad auswählen</string>
+    <string name="write_backup">Backup schreiben</string>
+    <string name="password_saved">Passwort gespeichert</string>
+    <string name="password">Passwort</string>
+    <string name="dialog_enter_password">Passwort eingeben</string>
+    <string name="backup">Backup</string>
 </resources>

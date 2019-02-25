@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         buildDatabase()
-//        generateTestEntities()
+        generateTestEntities()
 
         val customerAdapter = ListCustomerAdapter()
 

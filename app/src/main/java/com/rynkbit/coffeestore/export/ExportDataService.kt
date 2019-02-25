@@ -38,41 +38,67 @@ class ExportDataService: IntentService(ExportDataService::class.java.simpleName)
     val customer = mutableListOf<Customer>()
 
     override fun onHandleIntent(intent: Intent?) {
-        var waitCounter = 0
-        val waitMax = 10
+        waitForTransactions()
+        waitForCustomerAndProductDependecies()
 
-        do{
-            Thread.sleep(1000)
-            waitCounter++
-        }while (customerTransactions.isEmpty() && waitCounter < waitMax)
+        val (stringBuilder, simpleDateFormat) =
+            transformDataToCSVString()
 
-        if(customerTransactions.isEmpty()){
-            binder?.errorCode?.postValue(ERROR_WAITING_FOR_DATA)
+        checkStorageAvailable()
+
+        val directory =
+            createExportDirectory()
+
+        writeCSVStringToFile(directory, simpleDateFormat, stringBuilder)
+    }
+
+    private fun writeCSVStringToFile(
+        directory: File,
+        simpleDateFormat: SimpleDateFormat,
+        stringBuilder: StringBuilder
+    ) {
+        val file = File(
+            directory,
+            simpleDateFormat.format(customerTransactions.first().date) + "_" + simpleDateFormat.format(
+                customerTransactions.last().date
+            ) + ".csv"
+        )
+        val bufferedWriter = BufferedWriter(FileWriter(file))
+
+        bufferedWriter.write(stringBuilder.toString())
+        bufferedWriter.flush()
+        bufferedWriter.close()
+
+        NotificationManagerCompat.from(this).cancel(NOTIFICATION_ID)
+        binder?.finishedSuccessful?.postValue(true)
+        stopSelf()
+    }
+
+    private fun createExportDirectory(): File {
+        val directory =
+            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "CoffeeShop")
+
+        if (!directory.mkdirs()) {
+            binder?.errorCode?.postValue(ERROR_CREATING_DIRECTORY)
             stopSelf()
         }
+        return directory
+    }
 
-        var allProductsFound: Boolean
-        var allCustomersFound: Boolean
+    private fun checkStorageAvailable() {
+        if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED) {
+            binder?.errorCode?.postValue(ERROR_NO_STORAGE)
+            stopSelf()
+        }
+    }
 
-        do {
-            allProductsFound = true
-            allCustomersFound = true
-
-            customerTransactions.forEach {
-                if (products.filter { product -> product.id == it.productId }.isEmpty()) {
-                    allProductsFound = false
-                }
-                if (customer.filter { customer -> customer.id == it.customerId }.isEmpty()) {
-                    allCustomersFound = false
-                }
-            }
-        }while (!allCustomersFound || !allProductsFound)
-
-        val stringBuilder = StringBuilder("TRANSACTION_ID,TRANSACTION_DATE,TRANSACTION_STATE,CUSTOMER_ID,CUSTOMER,BALANCE,PRODUCT_ID,PRODUCT,PRICE,STOCK\n")
+    private fun transformDataToCSVString(): Pair<StringBuilder, SimpleDateFormat> {
+        val stringBuilder =
+            StringBuilder("TRANSACTION_ID,TRANSACTION_DATE,TRANSACTION_STATE,CUSTOMER_ID,CUSTOMER,BALANCE,PRODUCT_ID,PRODUCT,PRICE,STOCK\n")
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
-        customerTransactions.forEach {transaction ->
-            val product = products.single{product -> product.id == transaction.productId}
+        customerTransactions.forEach { transaction ->
+            val product = products.single { product -> product.id == transaction.productId }
             val customer = customer.single { customer -> customer.id == transaction.customerId }
 
             stringBuilder
@@ -97,29 +123,41 @@ class ExportDataService: IntentService(ExportDataService::class.java.simpleName)
                 .append(product.stock)
                 .append("\n")
         }
+        return Pair(stringBuilder, simpleDateFormat)
+    }
 
-        if(Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED){
-            binder?.errorCode?.postValue(ERROR_NO_STORAGE)
+    private fun waitForCustomerAndProductDependecies() {
+        var allProductsFound: Boolean
+        var allCustomersFound: Boolean
+
+        do {
+            allProductsFound = true
+            allCustomersFound = true
+
+            customerTransactions.forEach {
+                if (products.filter { product -> product.id == it.productId }.isEmpty()) {
+                    allProductsFound = false
+                }
+                if (customer.filter { customer -> customer.id == it.customerId }.isEmpty()) {
+                    allCustomersFound = false
+                }
+            }
+        } while (!allCustomersFound || !allProductsFound)
+    }
+
+    private fun waitForTransactions() {
+        var waitCounter = 0
+        val waitMax = 10
+
+        do {
+            Thread.sleep(1000)
+            waitCounter++
+        } while (customerTransactions.isEmpty() && waitCounter < waitMax)
+
+        if (customerTransactions.isEmpty()) {
+            binder?.errorCode?.postValue(ERROR_WAITING_FOR_DATA)
             stopSelf()
         }
-
-        val directory = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "CoffeeShop")
-
-        if(!directory.mkdirs()){
-            binder?.errorCode?.postValue(ERROR_CREATING_DIRECTORY)
-            stopSelf()
-        }
-
-        val file = File(directory, simpleDateFormat.format(customerTransactions.first().date) + "_" + simpleDateFormat.format(customerTransactions.last().date) + ".csv")
-        val bufferedWriter = BufferedWriter(FileWriter(file))
-
-        bufferedWriter.write(stringBuilder.toString())
-        bufferedWriter.flush()
-        bufferedWriter.close()
-
-        NotificationManagerCompat.from(this).cancel(NOTIFICATION_ID)
-        binder?.finishedSuccessful?.postValue(true)
-        stopSelf()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

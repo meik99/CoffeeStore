@@ -56,14 +56,13 @@
     <string name="revoked">Revoked</string>
     <string name="date">Date</string>
     <string name="password">Password</string>
-    <string name="preference_password_key">password</string>
+    <string name="preference_password_key" translatable="false">password</string>
     <string name="dialog_enter_password">Enter Password</string>
     <string name="password_saved">Password saved</string>
     <string name="backup">Backup</string>
     <string name="read_backup">Read Backup</string>
     <string name="select_backup_path">Select Backup Path</string>
-    <string name="read_backup">Read Backup</string>
+    <string name="placeholder_backup_path" translatable="false">data/backup.csv</string>
     <string name="write_backup">Write Backup</string>
-    <string name="placeholder_backup_path">data/backup.csv</string>
-    <string name="write_backup">Write Backup</string>
+    <string name="previous_directory" translatable="false">../</string>
 </resources>
