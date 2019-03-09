@@ -5,8 +5,11 @@ import java.io.File
 import java.util.*
 
 class DirectoryReader() {
-    private val directory: File =
-        Environment.getExternalStorageDirectory()
+    companion object {
+        val rootDirectory = Environment.getExternalStorageDirectory()
+    }
+
+    private val directory: File = rootDirectory
     private val directoryStack: Stack<File> = Stack()
 
     var currentDirectory = directory
